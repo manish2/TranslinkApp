@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TranslinkApp</string>
+    <string name="next_bus_prompt">Next Bus</string>
+    <string name="plan_trip_prompt">Plan a Trip</string>
+    <string name="enter_stopno_prompt">Stop Number: </string>
+    <string name="enter_button_prompt"> Enter </string>
+</resources>
