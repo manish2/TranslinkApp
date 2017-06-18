@@ -91,7 +91,8 @@ public class NextBus extends AppCompatActivity {
         });
     }
     private void listBusTimes() {
-        RestOperation ro = new RestOperation("&count=" + busCount_);
+        RestOperation ro = new RestOperation();
+        ro.addURLFilter("&count=" + busCount_);
         String stopNo = stopNoField_.getText().toString();
         if(!stopNo.isEmpty()) {
             try {

@@ -17,13 +17,9 @@ public class RestOperation extends AsyncTask<String,String,BufferedReader> {
     private final String API_KEY = "P82ydVMVrEnYmvC471Wz";
     private BufferedReader br;
     private String urlFilter_;
-    public RestOperation() {
-        urlFilter_ = null;
-    }
-    public RestOperation(String filter) {
+    public void addURLFilter(String filter) {
         urlFilter_ = filter;
     }
-
     @Override
     protected BufferedReader doInBackground(String... restUrl) {
         String fullURI = "";
