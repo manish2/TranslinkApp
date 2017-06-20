@@ -1,6 +1,7 @@
 package com.example.manish.translinkapp.Extensions;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.example.manish.translinkapp.Models.Bus;
 import com.example.manish.translinkapp.R;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**

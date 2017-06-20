@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.manish.translinkapp.Logic.Database.DBWriter;
 import com.example.manish.translinkapp.Models.Bus;
 import com.example.manish.translinkapp.Models.BusSchedule;
 import com.example.manish.translinkapp.R;
@@ -37,10 +38,14 @@ public class NextBus extends AppCompatActivity {
     private int busCount_;
     private final String EMPTY_STOPNO_FIELD = "Please enter a stop number";
     private final String INCORRECT_STOPNO_FIELD = "There was an error getting schedules for this stop";
+    String _stopNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_bus);
+        _stopNumber = getIntent().getStringExtra("StopNumber");
+        stopNoField_  = (EditText)findViewById(R.id.stop_no_field);
+        prePopulateStopNumber();
         addSeekBarListener();
         addEnterKeyListener();
     }
@@ -48,8 +53,23 @@ public class NextBus extends AppCompatActivity {
     public void onEnterClick(View v) {
         listBusTimes();
     }
-    private void addEnterKeyListener() {
+    public void onSaveClick(View v){
+        DBWriter writer = new DBWriter(this);
         stopNoField_  = (EditText)findViewById(R.id.stop_no_field);
+        String stopNo = stopNoField_.getText().toString();
+        try {
+            if(stopNo.trim().length() > 0) {
+                writer.writeDataToDB(stopNo);
+                Toast.makeText(getApplicationContext(),"Successfully Saved to Quick Access",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(),"Please provide a proper stop number",Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),"An error occured saving to quick access please try again",Toast.LENGTH_LONG).show();
+        }
+    }
+    private void addEnterKeyListener() {
         stopNoField_.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // If the event is a key-down event on the "enter" button
@@ -62,6 +82,11 @@ public class NextBus extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    private void prePopulateStopNumber() {
+        if(_stopNumber != null) {
+            stopNoField_.setText(_stopNumber);
+        }
     }
     private void addSeekBarListener() {
         SeekBar seekBar = (SeekBar)findViewById(R.id.seekBar);

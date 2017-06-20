@@ -25,6 +25,5 @@ public class TripPlanner extends AppCompatActivity {
         wv.getSettings().setJavaScriptEnabled(true);
         wv.setVisibility(View.VISIBLE);
         wv.loadData(iframeHtml,"text/html",null);
-
     }
 }

@@ -4,4 +4,6 @@
     <string name="plan_trip_prompt">Plan a Trip</string>
     <string name="enter_stopno_prompt">Stop Number: </string>
     <string name="enter_button_prompt"> Enter </string>
+    <string name="quick_access_prompt">Quick Access</string>
+    <string name="save_to_quick_prompt">Save to quick access</string>
 </resources>
